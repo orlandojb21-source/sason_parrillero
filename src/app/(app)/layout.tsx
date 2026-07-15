@@ -21,7 +21,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
       <div className="relative z-10 flex flex-1">
         <Sidebar rol={session.user.rol} />
         <div className="flex flex-1 flex-col">
-          <Topbar nombre={session.user.name} rol={session.user.rol} />
+          <Topbar nombre={session.user.name} rol={session.user.rol} imagen={session.user.image} />
           <main className="flex-1 p-6">{children}</main>
         </div>
       </div>
