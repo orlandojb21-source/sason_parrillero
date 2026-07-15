@@ -14,7 +14,9 @@ export function Topbar({
 }) {
   return (
     <header className="flex items-center justify-between gap-3 border-b border-white/10 px-4 py-3 sm:px-6">
-      <MobileNav rol={rol} />
+      <div>
+        <MobileNav rol={rol} />
+      </div>
       <div className="flex items-center gap-3">
         {imagen ? (
           // eslint-disable-next-line @next/next/no-img-element
