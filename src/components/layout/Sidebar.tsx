@@ -1,17 +1,7 @@
 import Link from "next/link";
-import { SECTION_ACCESS, type Seccion } from "@/lib/roles";
+import { SECTION_ACCESS } from "@/lib/roles";
 import type { Rol } from "@/lib/types";
-
-const NAV: { seccion: Seccion; href: string; label: string }[] = [
-  { seccion: "dashboard", href: "/dashboard", label: "Inicio" },
-  { seccion: "inventario", href: "/inventario", label: "Inventario" },
-  { seccion: "ventas", href: "/ventas", label: "Ventas" },
-  { seccion: "proveedores", href: "/proveedores", label: "Proveedores" },
-  { seccion: "solicitudes", href: "/solicitudes", label: "Solicitudes" },
-  { seccion: "gastos", href: "/gastos", label: "Gastos" },
-  { seccion: "reportes", href: "/reportes", label: "Reportes" },
-  { seccion: "usuarios", href: "/usuarios", label: "Usuarios" },
-];
+import { NAV } from "./nav";
 
 export function Sidebar({ rol }: { rol: Rol | null }) {
   const items = NAV.filter((item) => rol && SECTION_ACCESS[item.seccion].includes(rol));

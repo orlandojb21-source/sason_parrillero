@@ -20,6 +20,11 @@ export const metadata: Metadata = {
     icon: "/favicon.ico",
     apple: "/icons/apple-touch-icon.png",
   },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "Sazón Parrillero",
+  },
 };
 
 export const viewport: Viewport = {
