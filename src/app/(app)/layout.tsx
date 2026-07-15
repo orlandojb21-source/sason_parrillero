@@ -15,7 +15,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
         <img
           src="/logo.png"
           alt=""
-          className="h-[45vmin] w-[45vmin] max-h-96 max-w-96 rounded-full object-cover opacity-[0.05] grayscale"
+          className="h-[65vmin] w-[65vmin] max-h-[32rem] max-w-[32rem] rounded-full object-cover opacity-[0.12] grayscale"
         />
       </div>
       <div className="relative z-10 flex flex-1">
