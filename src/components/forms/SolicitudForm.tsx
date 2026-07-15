@@ -57,21 +57,35 @@ export function SolicitudForm({ productos, proveedores }: { productos: ItemInven
       <FormError message={state.error} />
       <input type="hidden" name="itemsJson" value={itemsJson} />
 
-      <label className="flex max-w-sm flex-col gap-1 text-sm">
-        <span className="text-brasa-cream/80">Proveedor (opcional, no hay uno fijo)</span>
-        <select
-          name="proveedorId"
-          defaultValue=""
-          className="rounded-md border border-white/15 bg-black/30 px-3 py-2 text-brasa-cream outline-none focus:border-brasa-flame"
-        >
-          <option value="">Aún sin decidir</option>
-          {proveedores.map((p) => (
-            <option key={p.id} value={p.id}>
-              {p.nombre}
-            </option>
-          ))}
-        </select>
-      </label>
+      <div className="flex max-w-sm flex-col gap-3">
+        <label className="flex flex-col gap-1 text-sm">
+          <span className="text-brasa-cream/80">Proveedor (opcional, no hay uno fijo)</span>
+          <select
+            name="proveedorId"
+            defaultValue=""
+            className="rounded-md border border-white/15 bg-black/30 px-3 py-2 text-brasa-cream outline-none focus:border-brasa-flame"
+          >
+            <option value="">Aún sin decidir</option>
+            {proveedores.map((p) => (
+              <option key={p.id} value={p.id}>
+                {p.nombre}
+              </option>
+            ))}
+          </select>
+        </label>
+
+        <label className="flex flex-col gap-1 text-sm">
+          <span className="text-brasa-cream/80">O escribe uno nuevo (si no está en la lista)</span>
+          <input
+            name="proveedorNuevoNombre"
+            placeholder="Nombre del proveedor nuevo"
+            className="rounded-md border border-white/15 bg-black/30 px-3 py-2 text-brasa-cream outline-none focus:border-brasa-flame"
+          />
+          <span className="text-xs text-brasa-cream/50">
+            Si escribes algo aquí, se agrega automáticamente a Proveedores y se usa en vez del seleccionado arriba.
+          </span>
+        </label>
+      </div>
 
       <div className="flex flex-col gap-3">
         {filas.map((fila, idx) => (

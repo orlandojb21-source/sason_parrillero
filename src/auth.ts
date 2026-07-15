@@ -21,7 +21,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
   ],
-  session: { strategy: "jwt" },
+  session: { strategy: "jwt", maxAge: 60 * 15 }, // 15 minutos: si no vuelves a interactuar, pide login de nuevo
   pages: {
     signIn: "/login",
     error: "/login",

@@ -17,8 +17,17 @@ export async function crearSolicitudAction(_prev: ActionState, formData: FormDat
     return { error: "Los productos de la solicitud no son válidos." };
   }
 
+  let proveedorId = formData.get("proveedorId");
+  const proveedorNuevoNombre = String(formData.get("proveedorNuevoNombre") || "").trim();
+  if (proveedorNuevoNombre) {
+    const proveedor = await callAppsScript<{ id: string }>("proveedores", "create", {
+      nombre: proveedorNuevoNombre,
+    });
+    proveedorId = proveedor.id;
+  }
+
   const parsed = solicitudCreateSchema.safeParse({
-    proveedorId: formData.get("proveedorId"),
+    proveedorId,
     notas: formData.get("notas"),
     items,
   });
@@ -28,6 +37,7 @@ export async function crearSolicitudAction(_prev: ActionState, formData: FormDat
 
   await callAppsScript("solicitudes", "create", { ...parsed.data, usuarioEmail: session.user.email });
   revalidatePath("/solicitudes");
+  if (proveedorNuevoNombre) revalidatePath("/proveedores");
   redirect("/solicitudes");
 }
 
