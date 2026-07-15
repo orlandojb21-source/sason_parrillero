@@ -20,6 +20,16 @@ function getHeaders_(sheet) {
   return sheet.getRange(1, 1, 1, lastCol).getValues()[0];
 }
 
+/**
+ * Tolera edición manual del Sheet: "FALSE"/"TRUE" como texto plano (no
+ * checkbox real) evaluarían siempre truthy en JS si no se normalizan aquí.
+ */
+function toBool_(value) {
+  if (typeof value === "boolean") return value;
+  var s = String(value).trim().toLowerCase();
+  return s === "true" || s === "1" || s === "si" || s === "sí" || s === "x";
+}
+
 function rowsToObjects_(sheet) {
   var lastRow = sheet.getLastRow();
   if (lastRow < 2) return [];
@@ -30,6 +40,12 @@ function rowsToObjects_(sheet) {
     headers.forEach(function (h, i) {
       obj[h] = row[i];
     });
+    if (headers.indexOf("activo") !== -1) {
+      obj.activo = toBool_(obj.activo);
+    }
+    if (headers.indexOf("rol") !== -1 && typeof obj.rol === "string") {
+      obj.rol = obj.rol.trim().toLowerCase();
+    }
     obj._row = idx + 2; // fila real en la hoja (1-based), útil para update/delete
     return obj;
   });

@@ -1,9 +1,9 @@
-import { requireRole } from "@/lib/session";
+import { requireSection } from "@/lib/session";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { UsuarioForm } from "@/components/forms/UsuarioForm";
 
 export default async function NuevoUsuarioPage() {
-  await requireRole(["admin", "soporte"]);
+  await requireSection("usuarios");
 
   return (
     <div>

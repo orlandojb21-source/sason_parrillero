@@ -1,4 +1,4 @@
-import { requireRole } from "@/lib/session";
+import { requireSection } from "@/lib/session";
 import { callAppsScript } from "@/lib/appsScript";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { LinkButton } from "@/components/ui/Button";
@@ -10,7 +10,7 @@ import { formatDate } from "@/lib/format";
 import type { Usuario } from "@/lib/types";
 
 export default async function UsuariosPage() {
-  await requireRole(["admin", "soporte"]);
+  await requireSection("usuarios");
   const usuarios = await callAppsScript<Usuario[]>("usuarios", "list");
 
   const columns: Column<Usuario>[] = [
