@@ -7,10 +7,23 @@ export default async function AppLayout({ children }: { children: React.ReactNod
 
   return (
     <div className="flex min-h-screen flex-1">
-      <Sidebar rol={session.user.rol} />
-      <div className="flex flex-1 flex-col">
-        <Topbar nombre={session.user.name} rol={session.user.rol} />
-        <main className="flex-1 p-6">{children}</main>
+      <div
+        aria-hidden
+        className="pointer-events-none fixed inset-0 z-0 flex items-center justify-center"
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/logo.png"
+          alt=""
+          className="h-[45vmin] w-[45vmin] max-h-96 max-w-96 rounded-full object-cover opacity-[0.05] grayscale"
+        />
+      </div>
+      <div className="relative z-10 flex flex-1">
+        <Sidebar rol={session.user.rol} />
+        <div className="flex flex-1 flex-col">
+          <Topbar nombre={session.user.name} rol={session.user.rol} />
+          <main className="flex-1 p-6">{children}</main>
+        </div>
       </div>
     </div>
   );
