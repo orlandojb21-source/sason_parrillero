@@ -10,7 +10,7 @@ import { formatDate } from "@/lib/format";
 import type { Usuario } from "@/lib/types";
 
 export default async function UsuariosPage() {
-  await requireRole(["admin"]);
+  await requireRole(["admin", "soporte"]);
   const usuarios = await callAppsScript<Usuario[]>("usuarios", "list");
 
   const columns: Column<Usuario>[] = [

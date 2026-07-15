@@ -3,7 +3,7 @@ import { PageHeader } from "@/components/ui/PageHeader";
 import { UsuarioForm } from "@/components/forms/UsuarioForm";
 
 export default async function NuevoUsuarioPage() {
-  await requireRole(["admin"]);
+  await requireRole(["admin", "soporte"]);
 
   return (
     <div>
